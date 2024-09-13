@@ -1,0 +1,16 @@
+@charset "UTF-8";
+
+p{
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 12px;
+}
+
+h1, h2{
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: bolder;
+    font-style: oblique;
+    text-decoration: underline;
+    /* --- Para fazer mais fácil ---
+    font: italic bolder "Times New Roman", Times, Serif;
+    */
+}

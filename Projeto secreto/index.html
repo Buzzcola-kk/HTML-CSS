@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Efeito de Buraco</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #111;
+            color: white;
+            margin: 0;
+            overflow: hidden;
+           background-color: black;
+            position: relative;
+        }
+
+        .container {
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        #explosionButton {
+            padding: 15px 30px;
+            font-size: 18px;
+            border: none;
+            cursor: pointer;
+            background-color: #3498db;
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        #explosionButton:hover {
+            background-color: #2980b9;
+        }
+
+        #explosionButton.hide {
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .message-container {
+            position: relative;
+            text-align: center;
+            opacity: 0;
+            transform: scale(0.8);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .message-container.show-message {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .message-container p {
+            color: black;
+            font-size: 20px;
+            margin-bottom: 20px;
+        }
+
+        .quote-button {
+            padding: 12px 25px;
+            font-size: 16px;
+            background-color: #e74c3c;
+            border: none;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .quote-button:hover {
+            background-color: #c0392b;
+        }
+
+        /* Estilo do buraco branco */
+        .hole {
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            background-color: white;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            transition: transform 0.7s ease-out;
+            z-index: -1;
+            box-shadow: 1px 1px 10px black;
+        }
+
+        .show-hole {
+            transform: translate(-50%, -50%) scale(2); /* Tamanho do buraco */
+        }
+
+        /* Fundo de trás do buraco */
+        .background-behind {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #f4f4f4; /* Fundo atrás do buraco */
+            z-index: -2;
+        }
+    </style>
+</head>
+<body>
+    <!-- Camada de fundo atrás do buraco -->
+    <div class="background-behind"></div>
+
+    <div class="container">
+        <div class="explosion-effect">
+            <button id="explosionButton">Passe o mouse</button>
+            <div class="hole"></div> <!-- O buraco que vai aparecer -->
+        </div>
+        <div class="message-container">
+            <p>Gostaria de ter um site como este? Cadastre-se agora e faça seu orçamento!</p>
+            <button class="quote-button">Faça seu orçamento</button>
+        </div>
+    </div>
+
+    <script>
+        const explosionButton = document.getElementById('explosionButton');
+        const explosionEffect = document.querySelector('.explosion');
+        const hole = document.querySelector('.hole');
+        const messageContainer = document.querySelector('.message-container');
+
+        explosionButton.addEventListener('mouseover', () => {
+            // Esconde o botão
+            explosionButton.classList.add('hide');
+
+            // Mostra o buraco branco
+            hole.classList.add('show-hole');
+
+            // Mostra a mensagem após um curto atraso
+            setTimeout(() => {
+                messageContainer.classList.add('show-message');
+            }, 500); // 500ms de atraso para sincronizar com o buraco
+        });
+    </script>
+</body>
+</html>
